@@ -1,0 +1,124 @@
+html {
+    background-color: rgb(21, 21, 21);
+}
+
+.container {
+    background: rgb(211, 211, 211);
+    width: 1000px;
+    margin: 5px 390px;
+    padding: 20px;
+    margin-top: 110px;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgb(200, 200, 200);
+    padding-left: 0px;
+}
+
+h1 {
+    font-family: "Reggae One", system-ui;
+    font-weight: 450;
+    font-style: normal;
+    font-size: 80px;
+    text-align: center;
+    margin: 0px;
+    color: rgb(39, 39, 39);
+    padding-left: 20px;
+}
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    font-family: "Viaoda Libre", serif;
+}
+
+.welcome-img {
+    height: 570px;
+    width: auto;
+}
+.name {
+    margin-right: 10px;
+}
+.name h3 {
+    font-size: 57px;
+    margin: 0;
+    letter-spacing: 3px;
+    padding: 0;
+}
+
+.name p {
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin: 15px 0px;
+    margin-bottom: 20px;
+}
+
+.name input {
+    width: 560px;
+    height: 60px;
+    font-size: 25px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: "Viaoda Libre", serif;
+    margin: 0px;
+    background-color: rgb(240, 240, 240);
+}
+
+.welcome-button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    pointer-events: none;
+}
+
+.welcome-button button {
+    height: 80px;
+    width: 250px;
+    margin: 0 auto;
+    font-size: 30px;
+    font-family: "Viaoda Libre", serif;
+    margin-top: 30px;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    border: 3px solid rgb(113, 113, 113);
+    transition: 0.25s ease-in-out;
+    pointer-events: auto;
+}
+
+.name button:hover {
+    background-color: rgb(58, 58, 58);
+    cursor: pointer;
+    color: rgb(211, 211, 211);
+    width: 263px;
+    height: 85px;
+    font-size: 31px;
+}
+
+.name button:active {
+    background-color: rgb(39, 39, 39);
+    height: 80px;
+    width: 250px;
+}
+.trech {
+    height: 130px;
+    width: auto;
+    margin-left: 100px;
+    opacity: 85%;
+}
+
+.welcome-button .last-say {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    font-family: "Viaoda Libre", serif;
+    color: rgb(83, 83, 83);
+    letter-spacing: 2px;
+    padding-top: 20px;
+    transition: 0.25s ease-in-out;
+    opacity: 0;
+}
+
+.welcome-button:hover .last-say {
+    opacity: 100;
+}
