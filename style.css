@@ -2,7 +2,9 @@ html {
     background-color: rgb(21, 21, 21);
 }
 
-.container {
+/* Rega */
+
+.reg-container {
     background: rgb(211, 211, 211);
     width: 1000px;
     margin: 5px 390px;
@@ -121,4 +123,93 @@ h1 {
 
 .welcome-button:hover .last-say {
     opacity: 100;
+}
+
+/* Menu */
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    width: 1500px;
+    height: 880px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgb(200, 200, 200);
+    background-image: url(img/fon-menu.png);
+    background-size: cover;
+}
+
+.navi {
+    width: 1500px;
+    display: flex;
+}
+
+.navi ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+
+.icon {
+    width: 100px;
+    height: auto;
+    filter: grayscale(100%) brightness(0%) invert(1);
+    transition: 0.3s ease-in-out;
+}
+
+.icon:hover {
+    cursor: pointer;
+    filter: 
+        grayscale(100%) 
+        brightness(0%) 
+        invert(90%) sepia(5%) saturate(500%) hue-rotate(320deg) 
+        opacity(0.9);
+}
+
+.button-fight {
+    display: flex;
+    justify-content: center;
+}
+
+.button-fight button {
+    height: 190px;
+    width: 360px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 7px solid rgb(196, 179, 179);
+    border-radius: 15px;
+    color: rgb(196, 179, 179);
+    font-size: 70px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    margin-top: 200px;
+    transition: 0.25s ease-in-out;
+}
+
+.button-fight button:hover {
+    height: 200px;
+    width: 380px;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 74px;
+    cursor: pointer;
+    color: rgb(230, 216, 216);
+}
+
+.say-tyler {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 900px;
+    font-size: 45px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(227, 213, 213);
+    margin-left: 110px;
+    margin-right: 40px;
+}
+
+.say-tyler p {
+    margin-top: 10px;
 }
