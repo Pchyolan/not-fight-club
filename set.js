@@ -3,7 +3,7 @@ const character = document.getElementById("menu-character");
 const settings = document.getElementById("menu-settings");
 
 home.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "menu.html";
 });
 
 character.addEventListener("click", () => {

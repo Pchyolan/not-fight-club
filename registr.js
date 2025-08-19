@@ -6,5 +6,5 @@ button.addEventListener("click", () => {
     if (!name) return;
 
     localStorage.setItem("playerName", name);
-    window.location.href = "index.html";
+    window.location.href = "menu.html";
 });

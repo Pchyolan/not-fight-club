@@ -3,43 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not Fight Club</title>
     <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Viaoda+Libre&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Viaoda+Libre&display=swap" rel="stylesheet">
+    <title>Not Fight Club</title>
 </head>
 
 <body>
-    <div class="menu-container">
-        <div class="navi">
-            <nav>
-                <ul>
-                    <li>
-                        <img id="menu-fight" src="img/menu-fight.png" alt="fight" class="icon">
-                    </li>
-                    <div class="say-tyler">
-                        <p id="tyler-hello"></p>
-                    </div>
-                    <div class="otdel-nav">
-                        <li>
-                            <img id="menu-character" src="img/menu-character.png" alt="character" class="icon">
-                        </li>
-                        <li>
-                            <img id="menu-settings" src="img/menu-settings.png" alt="settings" class="icon">
-                        </li>
-                    </div>
-                </ul>
-            </nav>
-        </div>
-        <div class="button-fight">
-            <button id="btnFight">Fight!</button>
-            <p>Жми. Всё равно тебе некуда деваться</p>
+    <div class="reg-container">
+        <h1>Welcome to Fight Club</h1>
+        <div class="welcome">
+            <div class="welcome-tyler">
+                <img src="img/welcome-tyler.png" alt="tyler" class="welcome-img">
+            </div>
+            <div class="name">
+                <img src="img/tresh-small.png" alt="trechshina" class = "trech">
+                <h3>Введи свое прозвище</h3>
+                <p>После первого удара ты его забудешь</p>
+                <input type="text" id="inputName" placeholder="Или придумаем его по твоим переломам...">
+
+                <div class="welcome-button">
+                    <button id="btnSave"> Запомнить </button>
+                    <span class="last-say">Записываю. В графу "расходный материал"</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="app.js" defer></script>
+    <script src="registr.js"></script>
 </body>
 
 </html>

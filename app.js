@@ -4,7 +4,7 @@ const settings = document.getElementById("menu-settings");
 const fight = document.getElementById("btnFight");
 
 home.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "menu.html";
 });
 
 character.addEventListener("click", () => {
@@ -26,7 +26,7 @@ const helloWords = [
     "С возвращением, {name}. Сегодня будем бить по твоему самолюбию или по печени?",
     "{name} в игре! Давай проверим, что сломается первым - твоя воля или челюсть",
     "Смотри, кто пришёл… {name}, ты точно мазохист",
-    "И снова {name}. Сколько ударов нужно, чтобы стереть твою улыбку?",
+    "И вновь {name}. Сколько ударов нужно, чтобы стереть твою улыбку?",
     "Добро пожаловать, {name}. Ринг соскучился по твоей боли",
     "{name}, ты пахнешь страхом. Отличный аромат для боя"
 ];
