@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,45 +10,106 @@
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Viaoda+Libre&display=swap" rel="stylesheet">
     <title>Not Fight Club</title>
 </head>
+
 <body>
     <div class="fight-container">
         <div class="navi">
             <nav>
                 <ul>
-                    <li>
+                    <li class="left-column">
                         <img id="menu-fight" src="img/menu-fight.png" alt="fight" class="icon">
                     </li>
-                    <div class="say-tyler">
-                        <p>Добро пожаловать в клуб. Первый урок — боль</p>
-                    </div>
-                    <li>
-                        <img id="menu-character" src="img/menu-character.png" alt="character" class="icon">
+
+                    <li class="say-tyler">
+                        <p>Добро пожаловать в клуб. Первое правило - боль</p>
                     </li>
-                    <li>
-                        <img id="menu-settings" src="img/menu-settings.png" alt="settings" class="icon">
+                    <li class="right-column">
+                        <div class="otdel-nav">
+                            <img id="menu-character" src="img/menu-character.png" alt="character" class="icon">
+                            <img id="menu-settings" src="img/menu-settings.png" alt="settings" class="icon">
+                        </div>
                     </li>
                 </ul>
             </nav>
         </div>
-        <!-- <div class="ring">
+        <div class="ring">
             <div class="player-pers">
-                <p>Name</p>
-                <img src="#" alt="pers">
-                <p>Health</p>
+                <p class="pers-name" id="pers-fight-name"></p>
+                <div class="pers-card">
+                    <img class="photo-pers" id="photo-fight" src="img/boec-1.png" alt="pers">
+
+                    <div class="icon-pers">
+                        <img src="img/knife.png" alt="icon" id="pers-icon-fight">
+                    </div>
+
+                    <div class="pers-health">
+                        <p>100/100</p>
+                        <div class="pers-polosa">
+                            <span class="pers-life"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="fight-place">
-                <p>Rules</p>
-                <ul class="attack">
-                                    <li><input type="radio" name="choice" />Голова</li>
-                                    <li><input type="radio" name="choice" />Шея</li>
-                                    <li><input type="radio" name="choice" />Живот</li>
-                                    <li><input type="radio" name="choice" />Печень</li>
-                                    <li><input type="radio" name="choice" />Ноги</li>
-                                </ul>
+                <div class="super-fight">
+                    <div class="rules">
+                        <p>Один удар, две блокировки.</p>
+                        <p>Давай, разбей себя</p>
+                    </div>
+                    <div class="chouse-fight">
+                        <div class="attack">
+                            <p>Атака</p>
+                            <ul>
+                                <li><label><span>Череп</span><input type="radio" name="attack"></label></li>
+                                <li><label><span>Горло</span><input type="radio" name="attack"></label></li>
+                                <li><label><span>Рёбра</span><input type="radio" name="attack"></label></li>
+                                <li><label><span>Печень</span><input type="radio" name="attack"></label></li>
+                                <li><label><span>Колени</span><input type="radio" name="attack"></label></li>
+                            </ul>
+                        </div>
+
+                        <div class="defens">
+                            <p>Защита</p>
+                            <ul>
+                                <li><label><input type="checkbox" name="defense[]"
+                                            value="head"><span>Череп</span></label></li>
+                                <li><label><input type="checkbox" name="defense[]" value="neck"><span>Горло</span></label>
+                                </li>
+                                <li><label><input type="checkbox" name="defense[]"
+                                            value="belly"><span>Рёбра</span></label></li>
+                                <li><label><input type="checkbox" name="defense[]"
+                                            value="liver"><span>Печень</span></label></li>
+                                <li><label><input type="checkbox" name="defense[]"
+                                            value="legs"><span>Колени</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="in-fight">Бей!</button>
+                </div>
             </div>
-        </div> -->
+            <div class="protivnik">
+                <p class="pers-name">Бамбук</p>
+                <div class="pers-card">
+                    <img class="photo-pers" src="img/prot-1.png" alt="pers">
+
+                    <div class="icon-prot">
+                        <img src="img/kulak.png" alt="icon">
+                    </div>
+
+                    <div class="prot-health">
+                        <p>100/100</p>
+                        <div class="prot-polosa">
+                            <span class="prot-life"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     </div>
     <script src="boy.js" defer></script>
 </body>
+
 </html>

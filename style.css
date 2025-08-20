@@ -133,8 +133,8 @@ h1 {
 .menu-container {
     display: flex;
     flex-direction: column;
-    width: 1500px;
-    height: 880px;
+    width: 80%;
+    height: 90vh;
     margin: 0 auto;
     margin-top: 50px;
     border: 2px solid black;
@@ -145,23 +145,41 @@ h1 {
 }
 
 .navi {
-    width: 1500px;
+    width: 100%;
+    justify-content: space-between;
     display: flex;
+    padding: 0 20px;
 }
 
 .navi ul {
+    width: 100%;
     display: flex;
-    gap: 30px;
+    justify-content: space-between;
     list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-column {
+    width: 10%;
+}
+
+.right-column {
+    width: 18%;
+    padding-top: 10px;
+}
+
+.right-column .icon {
+    width: 40%;
 }
 
 .otdel-nav {
     display: flex;
-    gap: 25px;
+    gap: 15px;
 }
 
 .icon {
-    width: 100px;
+    width: 80%;
     height: auto;
     filter: grayscale(100%) brightness(0%) invert(1);
     transition: 0.3s ease-in-out;
@@ -208,7 +226,7 @@ h1 {
     color: rgb(230, 216, 216);
 }
 
-.button-fight button:hover + p {
+.button-fight button:hover+p {
     opacity: 1;
 }
 
@@ -225,13 +243,12 @@ h1 {
     display: flex;
     text-align: center;
     justify-content: center;
-    width: 900px;
+    width: 67%;
     font-size: 45px;
     font-family: "Viaoda Libre", serif;
     letter-spacing: 3px;
     color: rgb(227, 213, 213);
-    margin-left: 110px;
-    margin-right: 40px;
+
 }
 
 .say-tyler p {
@@ -244,8 +261,8 @@ h1 {
 .pers-container {
     display: flex;
     flex-direction: column;
-    width: 1500px;
-    height: 880px;
+    width: 80%;
+    height: 90vh;
     margin: 0 auto;
     margin-top: 50px;
     border: 2px solid black;
@@ -403,14 +420,14 @@ h1 {
 .set-container {
     display: flex;
     flex-direction: column;
-    width: 1500px;
-    height: 880px;
+    width: 80%;
+    height: 90vh;
     margin: 0 auto;
     margin-top: 50px;
     border: 2px solid black;
     border-radius: 15px;
     background-image: url(img/trener.png);
-    background-size: cover;
+    background-size: contain;
     box-shadow: 0px 0px 20px rgb(200, 200, 200);
 }
 
@@ -480,7 +497,7 @@ h1 {
     flex-direction: column;
 }
 
-.name-tyler button:hover + p {
+.name-tyler button:hover+p {
     opacity: 1;
 }
 
@@ -533,10 +550,10 @@ h1 {
 /* Fight */
 
 .fight-container {
-     display: flex;
+    display: flex;
     flex-direction: column;
-    width: 1500px;
-    height: 880px;
+    width: 80%;
+    height: 90vh;
     margin: 0 auto;
     margin-top: 50px;
     border: 2px solid black;
@@ -544,8 +561,322 @@ h1 {
     background-image: url(img/ring.png);
     background-size: cover;
     box-shadow: 0px 0px 20px rgb(200, 200, 200);
+    padding: 0px 20px;
 }
 
-.fight-container .say-tyler {
+.fight-container .say-tyler p {
+    margin-bottom: 0px;
     font-size: 35px;
+}
+
+.ring {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.player-pers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 420px;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
+.pers-name {
+    font-size: 33px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(225, 213, 213);
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.pers-card {
+    position: relative;
+    overflow: visible;
+}
+
+.photo-pers {
+    width: 400px;
+    height: auto;
+    box-shadow:
+        0 0 0 2px rgb(170, 159, 146),
+        0 0 0 6px rgb(117, 101, 80);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.icon-pers img {
+    width: 170px;
+    height: auto;
+}
+
+.icon-pers {
+    position: absolute;
+    left: -80px;
+    bottom: -70px;
+    z-index: 3;
+}
+
+.pers-health {
+    position: absolute;
+    left: 60px;
+    bottom: -10px;
+    z-index: 2;
+}
+
+.pers-health p {
+    margin-bottom: 10px;
+    margin-left: 35px;
+    font-size: 33px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 4px;
+    color: rgb(225, 213, 213);
+    font-weight: 600;
+}
+
+.pers-polosa {
+    height: 40px;
+    width: 360px;
+    background: linear-gradient(0deg, #6e0808, #831111, #a03f3f, #8f1919, #760608);
+    box-shadow:
+        0 0 0 3px rgb(142, 131, 118),
+        0 0 0 6px rgb(103, 82, 58);
+    border-radius: 25px;
+}
+
+
+
+.protivnik {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 420px;
+    margin-right: 70px;
+    margin-top: 10px;
+}
+
+.icon-prot img {
+    width: 170px;
+    height: auto;
+}
+
+.icon-prot {
+    position: absolute;
+    left: 310px;
+    bottom: -70px;
+    z-index: 3;
+}
+
+.prot-health {
+    position: absolute;
+    left: -20px;
+    bottom: -10px;
+    z-index: 2;
+}
+
+.prot-health p {
+    margin-bottom: 10px;
+    margin-left: 200px;
+    font-size: 33px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 4px;
+    color: rgb(225, 213, 213);
+    font-weight: 600;
+}
+
+.prot-polosa {
+    height: 40px;
+    width: 360px;
+    background: linear-gradient(0deg, #6e0808, #831111, #a03f3f, #8f1919, #760608);
+    box-shadow:
+        0 0 0 3px rgb(142, 131, 118),
+        0 0 0 6px rgb(103, 82, 58);
+    border-radius: 25px;
+}
+
+
+.fight-place {
+    display: flex;
+    flex-direction: column;
+}
+
+.rules {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    border: 2px solid rgb(144, 128, 128);
+    border-radius: 10px;
+    font-size: 28px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(196, 177, 177);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.rules p {
+    margin: 0;
+    padding: 0;
+}
+
+.chouse-fight {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.chouse-fight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-1px);
+    background: rgba(225, 213, 213, .28);
+    pointer-events: none;
+}
+
+.attack,
+.defens {
+    width: 50%;
+}
+
+.attack p,
+.defens p {
+    margin: 0 0 10px;
+    font-weight: 700;
+    text-align: center;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(225, 213, 213);
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.attack ul,
+.defens ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.attack ul {
+    align-items: flex-end;
+}
+
+.defens ul {
+    align-items: flex-start;
+}
+
+.attack li label,
+.defens li label {
+    width: max-content;
+    font-size: 32px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: #e1d5d5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+
+.attack li label {
+    display: grid;
+    grid-template-columns: auto 1.3em;
+    align-items: center;
+    column-gap: 15px;
+    text-align: right;
+}
+
+.defens li label {
+    display: grid;
+    grid-template-columns: 1.3em auto;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.attack li label input {
+    justify-self: end;
+}
+
+.defens li label input {
+    justify-self: start;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.95em;
+  height: 1.95em;
+  border: 3px solid rgba(225,213,213,.8);
+  border-radius: 50%;
+  background: transparent;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  margin: 0;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+input[type="radio"]::after,
+input[type="checkbox"]::after{
+  content: "";
+  width: .9em;
+  height: .9em;
+  border-radius: 50%;
+  background: #e1d5d5;
+  transform: scale(0);
+  transition: transform .15s ease;
+}
+
+input[type="radio"]:checked::after,
+input[type="checkbox"]:checked::after{
+  transform: scale(1);
+}
+
+input[type="radio"]:hover,
+input[type="checkbox"]:hover{
+  border-color: #e1d5d5;
+}
+
+input[type="radio"]:focus-visible,
+input[type="checkbox"]:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(225,213,213,.35);
+  border-color: #e1d5d5;
+}
+
+
+
+.in-fight {
+    margin: 40px 80px;
+    width: 300px;
+    height: 100px;
+    font-size: 44px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(201, 185, 185);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgb(194, 178, 178);
+    border-radius: 15px;
+    transition: 0.25s ease-in-out;
+}
+
+.in-fight:hover {
+    transform: scale(1.2);
+    border: 3px solid rgb(225, 213, 213);
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 50px;
+    letter-spacing: 4px;
+    font-weight: 550;
+    cursor: pointer;
+    color: rgb(234, 224, 224);
 }
