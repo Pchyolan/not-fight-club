@@ -715,7 +715,7 @@ h1 {
     letter-spacing: 3px;
     color: rgb(196, 177, 177);
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .rules p {
@@ -724,140 +724,72 @@ h1 {
 }
 
 .chouse-fight {
-    position: relative;
     display: flex;
     align-items: flex-start;
-    gap: 50px;
+    gap: 40px;
 }
 
-.chouse-fight::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
+.chouse-fight hr {
     width: 2px;
-    transform: translateX(-1px);
-    background: rgba(225, 213, 213, .28);
-    pointer-events: none;
+    height: 370px;
+    border: none;
+    background: rgb(139, 117, 117);
 }
 
-.attack,
+.attack, 
 .defens {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.attack-btn,
+.defens-btn {
+    height: 50px;
+    width: 200px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(225, 213, 213);
+    font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgb(64, 57, 57);
+    border-radius: 5px;
+    transition: 0.25s ease-in-out;
+}
+
+.attack-btn:hover,
+.defens-btn:hover {
+    transform: scale(1.07);
+    cursor: pointer;
+    background-color: rgba(223, 200, 200, 0.8);
+    color: rgb(53, 52, 52);
+    border: 3px solid rgb(102, 86, 86);
+    font-weight: 600;
+}
+
+.attack-btn.selected,
+.defens-btn.selected {
+    transform: scale(1);
+    background-color: rgba(223, 200, 200, 0.8);
+    color: rgb(53, 52, 52);
+    border: 3px solid rgb(102, 86, 86);
+    font-weight: 600;
 }
 
 .attack p,
 .defens p {
-    margin: 0 0 10px;
-    font-weight: 700;
-    text-align: center;
     font-family: "Viaoda Libre", serif;
     letter-spacing: 3px;
     color: rgb(225, 213, 213);
     font-size: 40px;
-    margin-bottom: 20px;
-}
-
-.attack ul,
-.defens ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    list-style: none;
     margin: 0;
-    padding: 0;
+    text-align: center;
 }
 
-.attack ul {
-    align-items: flex-end;
-}
-
-.defens ul {
-    align-items: flex-start;
-}
-
-.attack li label,
-.defens li label {
-    width: max-content;
-    font-size: 32px;
-    font-family: "Viaoda Libre", serif;
-    letter-spacing: 3px;
-    color: #e1d5d5;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-}
-
-.attack li label {
-    display: grid;
-    grid-template-columns: auto 1.3em;
-    align-items: center;
-    column-gap: 15px;
-    text-align: right;
-}
-
-.defens li label {
-    display: grid;
-    grid-template-columns: 1.3em auto;
-    align-items: center;
-    column-gap: 15px;
-}
-
-.attack li label input {
-    justify-self: end;
-}
-
-.defens li label input {
-    justify-self: start;
-}
-
-input[type="radio"],
-input[type="checkbox"]{
-  -webkit-appearance: none;
-  appearance: none;
-  width: 1.95em;
-  height: 1.95em;
-  border: 3px solid rgba(225,213,213,.8);
-  border-radius: 50%;
-  background: transparent;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-  margin: 0;
-  transition: border-color .15s ease, box-shadow .15s ease;
-}
-
-input[type="radio"]::after,
-input[type="checkbox"]::after{
-  content: "";
-  width: .9em;
-  height: .9em;
-  border-radius: 50%;
-  background: #e1d5d5;
-  transform: scale(0);
-  transition: transform .15s ease;
-}
-
-input[type="radio"]:checked::after,
-input[type="checkbox"]:checked::after{
-  transform: scale(1);
-}
-
-input[type="radio"]:hover,
-input[type="checkbox"]:hover{
-  border-color: #e1d5d5;
-}
-
-input[type="radio"]:focus-visible,
-input[type="checkbox"]:focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(225,213,213,.35);
-  border-color: #e1d5d5;
-}
-
-
+    
 
 .in-fight {
-    margin: 40px 80px;
+    margin: 20px 80px;
     width: 300px;
     height: 100px;
     font-size: 44px;
@@ -870,13 +802,22 @@ input[type="checkbox"]:focus-visible{
     transition: 0.25s ease-in-out;
 }
 
-.in-fight:hover {
-    transform: scale(1.2);
+.in-fight:not(:disabled):hover {
+    transform: scale(1.1);
     border: 3px solid rgb(225, 213, 213);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.3);
     font-size: 50px;
     letter-spacing: 4px;
     font-weight: 550;
     cursor: pointer;
-    color: rgb(234, 224, 224);
+    color: rgb(246, 236, 236);
 }
+
+.in-fight:disabled {
+    cursor: not-allowed;
+    background-color: rgba(255, 255, 255, 0);
+    border: 3px solid rgb(124, 113, 113);
+    color: rgb(118, 106, 106);
+    pointer-events: none;
+}
+

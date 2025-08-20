@@ -60,32 +60,23 @@
                     <div class="chouse-fight">
                         <div class="attack">
                             <p>Атака</p>
-                            <ul>
-                                <li><label><span>Висок</span><input type="radio" name="attack"></label></li>
-                                <li><label><span>Челюсть</span><input type="radio" name="attack"></label></li>
-                                <li><label><span>Живот</span><input type="radio" name="attack"></label></li>
-                                <li><label><span>Печень</span><input type="radio" name="attack"></label></li>
-                                <li><label><span>Голень</span><input type="radio" name="attack"></label></li>
-                            </ul>
+                            <button class="attack-btn" data-zone="temple"> Висок </button>
+                            <button class="attack-btn" data-zone="jav"> Челюсть </button>
+                            <button class="attack-btn" data-zone="belly"> Живот </button>
+                            <button class="attack-btn" data-zone="liver"> Печень </button>
+                            <button class="attack-btn" data-zone="shin"> Голени </button>
                         </div>
-
+                        <hr>
                         <div class="defens">
                             <p>Защита</p>
-                            <ul>
-                                <li><label><input type="checkbox" name="defense[]"
-                                            value="head"><span>Висок</span></label></li>
-                                <li><label><input type="checkbox" name="defense[]" value="neck"><span>Челюсть</span></label>
-                                </li>
-                                <li><label><input type="checkbox" name="defense[]"
-                                            value="belly"><span>Живот</span></label></li>
-                                <li><label><input type="checkbox" name="defense[]"
-                                            value="liver"><span>Печень</span></label></li>
-                                <li><label><input type="checkbox" name="defense[]"
-                                            value="legs"><span>Голень</span></label></li>
-                            </ul>
+                            <button class="defens-btn" data-zone="temple"> Висок </button>
+                            <button class="defens-btn" data-zone="jav"> Челюсть </button>
+                            <button class="defens-btn" data-zone="belly"> Живот </button>
+                            <button class="defens-btn" data-zone="liver"> Печень </button>
+                            <button class="defens-btn" data-zone="shin"> Голени </button>
                         </div>
                     </div>
-                    <button class="in-fight">Бей!</button>
+                    <button id="fight-btn" class="in-fight" disabled>Бей!</button>
                 </div>
             </div>
             <div class="protivnik">
