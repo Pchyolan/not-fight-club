@@ -93,7 +93,7 @@ const opponents = [
     {
         name: "Лао Инь",
         img: "img/prot-1.png",
-        icon: "img/kulak.png",
+        icon: "img/cross.png",
         hp: 100,
         maxHp: 100,
         damage: 10,
@@ -105,7 +105,7 @@ const opponents = [
     {
         name: "Мясник",
         img: "img/prot-2.png",
-        icon: "img/kastet.png",
+        icon: "img/axe.png",
         hp: 100,
         maxHp: 100,
         damage: 20,
@@ -117,10 +117,10 @@ const opponents = [
     {
         name: "Шиз",
         img: "img/prot-3.png",
-        icon: "img/cherep.png",
+        icon: "img/bottle.png",
         hp: 100,
         maxHp: 100,
-        damage: 15,
+        damage: 5,
         critChance: 0.2,
         critCoeff: 1.5,
         attacksPerTurn: 1,
@@ -133,4 +133,72 @@ const opp = opponents[Math.floor(Math.random() * opponents.length)];
 document.querySelector(".protivnik .pers-name").textContent = opp.name;
 document.querySelector(".protivnik .photo-pers").src = opp.img;
 document.querySelector(".protivnik .icon-prot img").src = opp.icon;
-document.querySelector(".protivnik .prot-health p").textContent = `${opp.hp}/${opp.maxHp}`
+document.querySelector(".protivnik .prot-health p").textContent = `${opp.hp}/${opp.maxHp}`;
+
+
+const ZONES = ["temple", "jav", "belly", "liver", "shin"];
+
+function choseRandomZone(k) {
+    const copyZone = [...ZONES];
+    const result = [];
+    while (result.length < k && copyZone.length) {
+        const n = Math.floor(Math.random() * copyZone.length)
+        result.push(copyZone.splice(n, 1)[0]);
+    }
+
+    return result;
+}
+
+function updateHp() {
+    document.querySelector(".pers-health p").textContent = `${player.hp}/${player.maxHp}`;
+    document.querySelector(".prot-health p").textContent = `${opp.hp}/${opp.maxHp}`;
+
+    const playerProts = Math.max(0, Math.round((player.hp / player.maxHp) * 100));
+    const oppProts = Math.max(0, Math.round((opp.hp / opp.maxHp) * 100));
+
+    document.querySelector(".pers-polosa .pers-life").style.width = playerProts + "%"
+    document.querySelector(".prot-polosa .prot-life").style.width = oppProts + "%"
+}
+
+function minusDamage(boec, dmg) {
+    boec.hp = Math.max(0, boec.hp - dmg);
+}
+
+function checkEnd() {
+    if (player.hp <= 0 || opp.hp <=0) {
+        const result =
+        player.hp <= 0 && opp.hp <= 0 ? "Ухты, ничья":
+        player.hp <= 0 ? "Лууузер": "Победа, на удивление";
+        alert(result);
+
+        return true;
+    }
+
+    return false;
+}
+
+btnFight.addEventListener("click", () => {
+
+    const playerAttacks = choseAttack;
+    const playerBlocks = [...choseDefensBtn];
+
+    const oppAttacks = choseRandomZone(opp.attacksPerTurn);
+    const oppBlocks = choseRandomZone(opp.blocksPerTurn);
+
+    let dmgToPlayer = 0;
+    let dmgToOpp = 0;
+
+    if (!oppBlocks.includes(playerAttacks)) {
+        dmgToOpp += player.damage;
+    }
+
+    if (!playerBlocks.includes(oppAttacks)) {
+        dmgToPlayer += opp.damage;
+    }
+
+    minusDamage(opp, dmgToOpp);
+    minusDamage(player, dmgToPlayer);
+
+    updateHp()
+    if (checkEnd()) return;
+})
