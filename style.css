@@ -371,6 +371,7 @@ h1 {
     align-items: center;
     margin: 0 auto;
     margin-left: 280px;
+    gap: 40px;
 }
 
 .pers-str-left {
@@ -382,6 +383,7 @@ h1 {
     border-radius: 15px;
     margin-top: 20px;
     transition: 0.25s ease-in-out;
+    margin-bottom: 20px;
 }
 
 .pers-str-left:hover {
@@ -400,6 +402,7 @@ h1 {
     border-radius: 15px;
     margin-top: 20px;
     transition: 0.25s ease-in-out;
+    margin-bottom: 20px;
 }
 
 .pers-str-right:hover {
@@ -412,7 +415,17 @@ h1 {
 .changing-pers {
     font-size: 40px;
     color: rgb(227, 213, 213);
-    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgb(227, 213, 213);
+    border-radius: 15px;
+    padding: 10px 20px;
+    transition: 0.25s ease-in-out;
+}
+
+.changing-pers:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
 }
 
 /* Settings */

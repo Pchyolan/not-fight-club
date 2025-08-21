@@ -93,6 +93,7 @@ const opponents = [
     {
         name: "Лао Инь",
         img: "img/prot-1.png",
+        icon: "img/kulak.png",
         hp: 100,
         maxHp: 100,
         damage: 10,
@@ -104,6 +105,7 @@ const opponents = [
     {
         name: "Мясник",
         img: "img/prot-2.png",
+        icon: "img/kastet.png",
         hp: 100,
         maxHp: 100,
         damage: 20,
@@ -115,6 +117,7 @@ const opponents = [
     {
         name: "Шиз",
         img: "img/prot-3.png",
+        icon: "img/cherep.png",
         hp: 100,
         maxHp: 100,
         damage: 15,
@@ -125,4 +128,9 @@ const opponents = [
     },
 ]
 
-const randomOpp = opponents[Math.floor(Math.random * opponents.length)]
+const opp = opponents[Math.floor(Math.random() * opponents.length)];
+
+document.querySelector(".protivnik .pers-name").textContent = opp.name;
+document.querySelector(".protivnik .photo-pers").src = opp.img;
+document.querySelector(".protivnik .icon-prot img").src = opp.icon;
+document.querySelector(".protivnik .prot-health p").textContent = `${opp.hp}/${opp.maxHp}`

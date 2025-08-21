@@ -71,3 +71,9 @@ const playerName = localStorage.getItem("playerName");
 const changePhotoSay = document.getElementById("change-photo-say");
 
 changePhotoSay.textContent = `Изменить внешность в цифровом мире? Оригинально, ${playerName}`
+
+const savePhoto = document.getElementById("savePhoto");
+
+savePhoto.addEventListener("click", () => {
+    window.location.href = "menu.html";
+})
