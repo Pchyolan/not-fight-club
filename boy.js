@@ -30,6 +30,42 @@ let choseAttack = null;
 const btnsDefens = document.querySelectorAll(".defens-btn");
 let choseDefensBtn = [];
 
+const reactionsOpp = {
+    temple: [
+
+    ],
+    jav: [
+
+    ],
+    belly: [
+
+    ],
+    liver: [
+
+    ],
+    shin: [
+
+    ],
+}
+
+const reactionsPlayer = {
+    temple: [
+
+    ],
+    jav: [
+
+    ],
+    belly: [
+
+    ],
+    liver: [
+
+    ],
+    shin: [
+
+    ],
+}
+
 
 function checkAttack() {
     const isRight = choseAttack !== null && choseDefensBtn.length == 2;
@@ -165,16 +201,48 @@ function minusDamage(boec, dmg) {
 }
 
 function checkEnd() {
-    if (player.hp <= 0 || opp.hp <=0) {
+    if (player.hp <= 0 || opp.hp <= 0) {
         const result =
-        player.hp <= 0 && opp.hp <= 0 ? "Ухты, ничья":
-        player.hp <= 0 ? "Лууузер": "Победа, на удивление";
+            player.hp <= 0 && opp.hp <= 0 ? "Ухты, ничья" :
+                player.hp <= 0 ? "Лууузер" : "Победа, на удивление";
         alert(result);
 
         return true;
     }
 
     return false;
+}
+
+function changePhoto() {
+    if (player.hp <= 50) {
+        const newPersPhoto = playerPhoto.replace(".png", ".2.png");
+        document.querySelector(".player-pers .photo-pers").src = newPersPhoto;
+        console.log(newPersPhoto)
+    }
+
+    if (opp.hp <= 50) {
+        const newOppPhoto = opp.img.replace(".png", ".2.png");
+        document.querySelector(".protivnik .photo-pers").src = newOppPhoto;
+        console.log(newOppPhoto)
+    }
+}
+
+function addLog({who, whom, zone, dmg}) {
+    const log = document.getElementById("fight-log");
+    if (!log) return;
+
+    const row = document.createElement("div");
+    row.className = "row";
+
+    row.innerHTML = `
+    <span class="who">${who}</span> атаковал
+    <span class="whom">${whom}</span> в
+    <span class="zone">${zone}</span>, -
+    <span class="dmg">${dmg}</span> hp.
+    `;
+
+    log.appendChild(row);
+    log.scrollTop = log.scrollHeight;
 }
 
 btnFight.addEventListener("click", () => {
@@ -195,10 +263,10 @@ btnFight.addEventListener("click", () => {
     if (!playerBlocks.includes(oppAttacks)) {
         dmgToPlayer += opp.damage;
     }
-
     minusDamage(opp, dmgToOpp);
     minusDamage(player, dmgToPlayer);
 
-    updateHp()
+    updateHp();
+    changePhoto();
     if (checkEnd()) return;
 })

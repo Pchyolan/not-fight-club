@@ -723,8 +723,6 @@ h1 {
 }
 
 
-
-
 .fight-place {
     display: flex;
     flex-direction: column;
@@ -846,4 +844,33 @@ h1 {
     border: 3px solid rgb(124, 113, 113);
     color: rgb(118, 106, 106);
     pointer-events: none;
+}
+
+.fight-log {
+    margin: 0px 220px 10px 220px;
+    overflow-y: hidden;
+    padding: 10px 14px;
+    border: 2px solid rgba(194, 178, 178, 0.6);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    text-align: center;
+}
+
+.fight-log p {
+    font-family: "Viaoda Libre", serif;
+    color: rgb(225, 213, 213);
+    letter-spacing: 1px;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.fight-log .who,
+.fight-log .whom,
+.fight-log .dmg {
+    font-weight: 700px;
+}
+
+.fight-log .zone {
+    text-decoration: underline;
 }
