@@ -32,40 +32,109 @@ let choseDefensBtn = [];
 
 const reactionsOpp = {
     temple: [
-
+        "Похоже, он увидел звезды.",
+        "Выглядит ошеломленным..",
+        "Трясет головой, приходя в себя",
+        "В его взляде появилась пустота",
+        "На мгновение теряет ориентацию"
     ],
     jav: [
-
+        "Его зубы щелкают.",
+        "Он прикусывает язык",
+        "Его глаза закатываются",
+        "Сплëвывает кровью под ноги",
+        "Не в силах разжать зубы"
     ],
     belly: [
-
+        "Издает хриплый вдох",
+        "Бледнеет и замирает",
+        "Слышен глухой стон",
+        "Шипит от ярости и боли",
+        "Отскакивает, хватаясь за бок"
     ],
     liver: [
-
+        "Он медленно оседает",
+        "На лбу выступает пот",
+        "Кашляет, пытаясь вдохнуть",
+        "Его взглят мутнеет от шока",
+        "Падает на колено, кряхтя от боли"
     ],
     shin: [
 
+        "Подпрыгивает на одной ноге",
+        "Злобно смотрит на тебя..",
+        "Пританцовывает, скрывая боль",
+        "По лицу пробегает досада",
+        "Спотыкается, теряя равновесие"
     ],
 }
 
 const reactionsPlayer = {
     temple: [
-
+        "Звон в ушах",
+        "Искры из глаз",
+        "Череп загудел",
+        "Мысли разбежались",
+        "Время замедлилось"
     ],
     jav: [
-
+        "Зубы поют хором",
+        "Привет, ассиметрия",
+        "Прикусил язык",
+        "Сустав щелкнул",
+        "Мозг завис"
     ],
     belly: [
-
+        "Вспомнил, чем завтракал",
+        "Дыхание сломалось пополам",
+        "Кишки вспомнили детство",
+        "Нервный узел распался",
+        "Внутри все перемешалось"
     ],
     liver: [
-
+        "Почка простилась",
+        "Почувствовал вкус железа?",
+        "Тело согнулось в крюк",
+        "Темнота наступает с краев",
+        "Дыши, если можешь.."
     ],
     shin: [
-
+        "Хромота - твой новый стиль",
+        "Походка стала интереснее",
+        "Звук, как щелчок ореха",
+        "Судорога сводит икру",
+        "Кость возмущенно завизжала"
     ],
 }
 
+const glagols = [
+    "бьет",
+    "лупит",
+    "мочит",
+    "вмазывает",
+    "пробивает",
+    "врезает",
+    "наносит удар"
+];
+
+const reactBlockPlayer = [
+    "Тебе повезло. Пока что",
+    "Удача тебе улыбнулась",
+    "Ты купил себе пару секунд",
+    "Наслаждайся мелкой победой",
+    "Жесткий блок! Теперь ответь",
+    "Отбил! Инстинкты сработали",
+    "Удар заблокирован! Удивил."
+];
+
+const reactBlockOpp = [
+    "Блок. Он усмехается тебе в лицо",
+    "Отбил! И плюнул тебе под ноги",
+    "Принял на блок и даже не моргнул",
+    "Отклоняет удар. Злобно ухмыльнулся",
+    "Удар заблокирован. Зевнул от скуки",
+    "Защитился. «Слабо?» - шепчет он"
+]
 
 function checkAttack() {
     const isRight = choseAttack !== null && choseDefensBtn.length == 2;
@@ -127,7 +196,7 @@ const player = {
 
 const opponents = [
     {
-        name: "Лао Инь",
+        name: "Чен Сян",
         img: "img/prot-1.png",
         icon: "img/cross.png",
         hp: 100,
@@ -227,7 +296,7 @@ function changePhoto() {
     }
 }
 
-function addLog({who, whom, zone, dmg}) {
+function addLog({ who, doo, whom, zone, dmg, react }) {
     const log = document.getElementById("fight-log");
     if (!log) return;
 
@@ -235,14 +304,30 @@ function addLog({who, whom, zone, dmg}) {
     row.className = "row";
 
     row.innerHTML = `
-    <span class="who">${who}</span> атаковал
+    <span class="who">${who}</span>
+    <span class="doo">${doo}</span>
     <span class="whom">${whom}</span> в
-    <span class="zone">${zone}</span>, -
-    <span class="dmg">${dmg}</span> hp.
+    <span class="zone">${zone}</span>,
+    -<span class="dmg">${dmg}</span> hp.
+    <span class="react">${react}</span>
     `;
 
     log.appendChild(row);
     log.scrollTop = log.scrollHeight;
+}
+
+function toRussian(zon) {
+    if (zon === "temple") {
+        return "висок";
+    } else if (zon === "jav") {
+        return "челюсть";
+    } else if (zon === "belly") {
+        return "живот";
+    } else if (zon === "liver") {
+        return "печень";
+    } else if (zon === "shin") {
+        return "голень";
+    }
 }
 
 btnFight.addEventListener("click", () => {
@@ -256,13 +341,67 @@ btnFight.addEventListener("click", () => {
     let dmgToPlayer = 0;
     let dmgToOpp = 0;
 
-    if (!oppBlocks.includes(playerAttacks)) {
-        dmgToOpp += player.damage;
+    function getGlagol(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    if (!playerBlocks.includes(oppAttacks)) {
-        dmgToPlayer += opp.damage;
+    function choseReaction(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
     }
+
+    function getReactionOpp(zonee, itogDamage) {
+        if (itogDamage === 0) {
+            return reactBlockOpp[Math.floor(Math.random() * reactBlockPlayer.length)];
+        } else {
+            const rea = reactionsOpp[zonee];
+            return choseReaction(rea);
+        }
+    }
+
+    function getReactionPlayer(zonee,itogDamage) {
+        if (itogDamage === 0) {
+            return reactBlockPlayer[Math.floor(Math.random() * reactBlockOpp.length)];
+        } else {
+            const rea = reactionsPlayer[zonee];
+            return choseReaction(rea);
+        }
+    }
+
+    {
+        const block = oppBlocks.includes(playerAttacks);
+        const itogDamage = block ? 0 : player.damage
+
+        addLog({
+            who: player.name,
+            doo: getGlagol(glagols),
+            whom: opp.name + "a",
+            zone: toRussian(playerAttacks),
+            dmg: itogDamage,
+            react: getReactionOpp(playerAttacks, itogDamage)
+        })
+
+        dmgToOpp += itogDamage;
+
+
+    }
+
+    oppAttacks.forEach(zone => {
+        const block = playerBlocks.includes(zone);
+        const itogDamage = block ? 0 : opp.damage;
+        console.log(itogDamage)
+        addLog({
+            who: opp.name,
+            doo: getGlagol(glagols),
+            whom: player.name,
+            zone: toRussian(zone),
+            dmg: itogDamage,
+            react: getReactionPlayer(zone, itogDamage)
+        })
+
+
+        dmgToPlayer += itogDamage;
+
+    })
     minusDamage(opp, dmgToOpp);
     minusDamage(player, dmgToPlayer);
 

@@ -49,7 +49,7 @@ btnRight.addEventListener("click", () => {
 
     changePhoto(index);
 
-    localStorage.setItem(keyIndex, String(index))
+    localStorage.setItem(keyIndex, index)
     localStorage.setItem("chosenPhoto", photos[index].photo)
 })
 
