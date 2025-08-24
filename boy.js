@@ -303,14 +303,17 @@ function isBattleSave() {
 
 const ZONES = ["temple", "jav", "belly", "liver", "shin"];
 
+let lastZone = []
 function choseRandomZone(k) {
     const copyZone = [...ZONES];
+    const newZone = copyZone.filter(z => !lastZone.includes(z))
+
     const result = [];
     while (result.length < k && copyZone.length) {
         const n = Math.floor(Math.random() * copyZone.length)
         result.push(copyZone.splice(n, 1)[0]);
     }
-
+    lastZone = result.slice()
     return result;
 }
 
