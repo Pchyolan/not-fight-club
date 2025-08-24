@@ -400,11 +400,11 @@ function checkDefeat() {
 function checkDraw() {
     itog.classList.add("open");
     itogHead.textContent = "Ничья. Как скучно"
-    itogText.textContent = "Идеальный результат для двух лузеров";
+    itogText.textContent = "М-да.. Идеальный результат для двух лузеров";
     btnExit.textContent = "Слиться";
     btnRev.textContent = "Еще раз";
     exitText.textContent = "Твое коренное умение. Да, хватит позориться"
-    revengeText.textContent = "Чтобы снова получить по зубам, ну-ну"
+    revengeText.textContent = "Чтобы снова получить по зубам? Ну-ну"
     btnExit.addEventListener("click", () => {
         localStorage.removeItem("data-fight");
         window.location.href = "menu.html";
@@ -501,11 +501,11 @@ btnFight.addEventListener("click", () => {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    function getReactionOpp(zonee, itogDamage) {
+    function getReactionOpp(zone, itogDamage) {
         if (itogDamage === 0) {
             return reactBlockOpp[Math.floor(Math.random() * reactBlockOpp.length)];
         } else {
-            const rea = reactionsOpp[zonee];
+            const rea = reactionsOpp[zone];
             return choseReaction(rea);
         }
     }
@@ -520,30 +520,25 @@ btnFight.addEventListener("click", () => {
     }
 
     const playerCrit = [2, 4]
-    const oppCrit = [3, 5]
+    const oppCrit = [5, 7]
 
-    function critPlayerUdar(dmg) {
+    function critPlayerUdar() {
         const randomNumb = Math.floor(Math.random() * 10);
-        if (playerCrit.includes(randomNumb)) {
-            return dmg * 1.5;
-        } else {
-            return dmg;
-        }
+        return playerCrit.includes(randomNumb)
     }
 
-    function critOppUdar(dmg) {
+    function critOppUdar() {
         const randomNumb = Math.floor(Math.random() * 10);
-        if (oppCrit.includes(randomNumb)) {
-            return dmg * 1.5;
-        } else {
-            return dmg;
-        }
+        return oppCrit.includes(randomNumb)
     }
 
     {
         const block = oppBlocks.includes(playerAttacks);
-        const itogDamage = block ? 0 : player.damage
-        critPlayerUdar(itogDamage);
+        let isItCrit = critOppUdar()
+        let itogDamage = isItCrit 
+        ? Math.floor(player.damage * 1.5) :
+        (block ? 0 : player.damage);
+
         addLog({
             who: player.name,
             doo: getGlagol(glagols),
@@ -560,8 +555,11 @@ btnFight.addEventListener("click", () => {
 
     oppAttacks.forEach(zone => {
         const block = playerBlocks.includes(zone);
-        const itogDamage = block ? 0 : opp.damage;
-        critOppUdar(itogDamage);
+        let isItCrit = critOppUdar()
+        let itogDamage = isItCrit 
+        ? Math.floor(opp.damage * 1.5) :
+        (block ? 0 : opp.damage);
+
         addLog({
             who: opp.name,
             doo: getGlagol(glagols),
