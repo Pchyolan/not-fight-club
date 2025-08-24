@@ -338,6 +338,8 @@ function minusDamage(boec, dmg) {
 //Cдаться и уползти
 //Реванш
 
+ let amountWins = 0;
+ let amountDefens = 0;
 
 const itog = document.getElementById("itog-fight");
 const itogHead = document.getElementById("itog-head");
@@ -364,19 +366,43 @@ function checkWin() {
         localStorage.removeItem("data-fight");
         location.reload();
     })
+    amountWins = Number(localStorage.getItem("amountYourWins")) + 1;
+    localStorage.setItem("amountYourWins", amountWins);
 }
 
 function checkDefeat() {
     itog.classList.add("open");
     itogHead.textContent = "Нокаут. Ожидаемо"
     itogText.textContent = `${opp.name} из тебя сделал фарш. Хах, теперь ты официально никто...`;
-    btnExit.textContent = "Сдаться и уползти";
+    btnExit.textContent = "Смириться и уползти";
     btnRev.textContent = "Реванш";
     exitText.textContent = "Признать свою ничтожность. Мудрое решение"
     revengeText.textContent = "Попытка №100500. В этот раз проиграешь еще быстрее"
     btnExit.addEventListener("click", () => {
         localStorage.removeItem("data-fight");
-        window.location.href("menu.html");
+        window.location.href = "menu.html";
+    });
+    btnRev.addEventListener("click", () => {
+        localStorage.removeItem("data-fight");
+        location.reload();
+    })
+
+    amountDefens = Number(localStorage.getItem("amountYourDefens")) + 1;
+    console.log(amountDefens);
+    localStorage.setItem("amountYourDefens", amountDefens);
+}
+
+function checkDraw() {
+    itog.classList.add("open");
+    itogHead.textContent = "Ничья. Как скучно"
+    itogText.textContent = "Идеальный результат для двух лузеров";
+    btnExit.textContent = "Сдаться";
+    btnRev.textContent = "Еще раз";
+    exitText.textContent = "Признать свою ничтожность. Мудрое решение"
+    revengeText.textContent = "Попытка №100500. В этот раз проиграешь еще быстрее"
+    btnExit.addEventListener("click", () => {
+        localStorage.removeItem("data-fight");
+        window.location.href = "menu.html";
     });
     btnRev.addEventListener("click", () => {
         localStorage.removeItem("data-fight");
@@ -387,7 +413,7 @@ function checkDefeat() {
 function checkEnd() {
     if (player.hp <= 0 || opp.hp <= 0) {
         const result =
-            player.hp <= 0 && opp.hp <= 0 ? "Ухты, ничья" :
+            player.hp <= 0 && opp.hp <= 0 ? checkDraw() :
                 player.hp <= 0 ? checkDefeat() : checkWin();
         return result;
     }

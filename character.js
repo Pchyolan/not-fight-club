@@ -78,3 +78,9 @@ const savePhoto = document.getElementById("savePhoto");
 savePhoto.addEventListener("click", () => {
     window.location.href = "menu.html";
 })
+
+const wins = document.getElementById("wins");
+wins.textContent = localStorage.getItem("amountYourWins");
+
+const defeats = document.getElementById("defeats");
+defeats.textContent = localStorage.getItem("amountYourDefens");
