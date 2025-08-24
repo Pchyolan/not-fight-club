@@ -80,7 +80,22 @@ savePhoto.addEventListener("click", () => {
 })
 
 const wins = document.getElementById("wins");
-wins.textContent = localStorage.getItem("amountYourWins");
-
 const defeats = document.getElementById("defeats");
-defeats.textContent = localStorage.getItem("amountYourDefens");
+
+
+function isWin() {
+    if (localStorage.getItem("amountYourWins")) {
+        wins.textContent = localStorage.getItem("amountYourWins");
+    } else {
+        wins.textContent = "0";
+    }
+}
+
+function isDef() {
+    if (localStorage.getItem("amountYourDefens")) {
+        defeats.textContent = localStorage.getItem("amountYourWins");
+    } else {
+        defeats.textContent = "0";
+    }
+}
+
