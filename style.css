@@ -372,47 +372,48 @@ h1 {
 .change-pers {
     display: flex;
     justify-content: space-between;
-    width: 380px;
     align-items: center;
     margin: 0 auto;
-    margin-left: 280px;
     gap: 40px;
+    margin-top: 20px;
 }
 
 .pers-str-left {
     display: inline-block;
-    font-size: 40px;
+    font-size: 55px;
     color: rgb(227, 213, 213);
     border: 2px solid rgb(227, 213, 213);
-    padding: 8px 20px 10px 15px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
     border-radius: 15px;
-    margin-top: 20px;
     transition: 0.25s ease-in-out;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
 .pers-str-left:hover {
-    transform: scale(1.05);
-    font-size: 42px;
+    transform: scale(1.1);
+    font-size: 57px;
     background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
 }
 
 .pers-str-right {
     display: inline-block;
-    font-size: 40px;
+    font-size: 55px;
     color: rgb(227, 213, 213);
     border: 2px solid rgb(227, 213, 213);
-    padding: 8px 15px 10px 20px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
     border-radius: 15px;
-    margin-top: 20px;
     transition: 0.25s ease-in-out;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
 .pers-str-right:hover {
-    transform: scale(1.05);
-    font-size: 42px;
+    transform: scale(1.1);
+    font-size: 57px;
     background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
 }
@@ -465,7 +466,7 @@ h1 {
 }
 
 .change-name {
-    height: 120px;
+    height: 90px;
     width: 300px;
     font-size: 33px;
     font-family: "Viaoda Libre", serif;
@@ -475,6 +476,7 @@ h1 {
     border-radius: 20px;
     color: rgb(227, 213, 213);
     transition: 0.25s ease-in-out;
+    margin-top: 18px;
 }
 
 .change-name:hover {
@@ -566,6 +568,14 @@ h1 {
     cursor: pointer;
 }
 
+.descr-icon {
+    font-size: 35px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(192, 181, 181);
+    margin-left: 30px;
+    margin-top: 40px;
+}
 
 /* Fight */
 

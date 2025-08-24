@@ -216,7 +216,7 @@ const opponents = [
         damage: 20,
         critChance: 0.2,
         attacksPerTurn: 1,
-        blocksPerTurn: 3
+        blocksPerTurn: 2
     },
     {
         name: "Шиз",

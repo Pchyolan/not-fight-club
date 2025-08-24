@@ -39,6 +39,19 @@ const icons = document.querySelectorAll(".change-icon img");
 function choseIcon(chose) {
     icons.forEach(icon => icon.classList.remove('selected'));
     chose.classList.add('selected');
+    const iconDes = document.getElementById("des-icon");
+
+    const descript = [
+        "Чтобы резать не только воздух, но и твои надежды",
+        "Ударник, для создания музыки из хруста костей",
+        "Для тех, чьи кулаки слишком нежны для правды",
+        "Безликая кость. Идеально отражает твою личность"
+    ]
+    icons.forEach((icon, ind) => {
+        if (icon.classList.contains("selected")) {
+            iconDes.textContent = descript[ind];
+        }
+    })
 
     localStorage.setItem("choseIcon", chose.src);
 }
@@ -58,3 +71,9 @@ if (savedIcon) {
         }
     });
 }
+
+//Ножик? Чтобы резать не только воздух, но и твои надежды
+//Ударник, для создания музыки из хруста костей
+//Для тех, чьи кулаки слишком нежны для правды
+//Безликая кость. Идеально отражает твою личность
+
