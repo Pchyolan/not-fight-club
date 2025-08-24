@@ -138,7 +138,8 @@ const reactBlockOpp = [
 
 function checkAttack() {
     const isRight = choseAttack !== null && choseDefensBtn.length == 2;
-    btnFight.disabled = !isRight;
+    const areTheyLive = player.hp > 0 && opp.hp > 0;
+    btnFight.disabled = !(isRight && areTheyLive);
 }
 
 function choseBtn(chose) {
@@ -322,6 +323,7 @@ function updateHp() {
 
     document.querySelector(".pers-polosa .pers-life").style.width = playerProts + "%"
     document.querySelector(".prot-polosa .prot-life").style.width = oppProts + "%"
+
 }
 
 function minusDamage(boec, dmg) {
@@ -338,8 +340,8 @@ function minusDamage(boec, dmg) {
 //Cдаться и уползти
 //Реванш
 
- let amountWins = 0;
- let amountDefens = 0;
+let amountWins = 0;
+let amountDefens = 0;
 
 const itog = document.getElementById("itog-fight");
 const itogHead = document.getElementById("itog-head");
@@ -351,55 +353,58 @@ const revengeText = document.getElementById("itog-revenge-text");
 
 
 function checkWin() {
-    itog.classList.add("open");
-    itogHead.textContent = "Победа далась кровью"
-    itogText.textContent = `Поздравляю, ${player.name}. Теперь станешь грушей для битья кого-то посильнее`
-    btnExit.textContent = "Убежать с ринга";
-    btnRev.textContent = "Ещё раунд";
-    exitText.textContent = "Спасти свою шкуру. Единственный твой талант"
-    revengeText.textContent = "Продолжим выбивать из тебя остатки самоуважения"
-    btnExit.addEventListener("click", () => {
-        localStorage.removeItem("data-fight");
-        window.location.href = "menu.html";
-    });
-    btnRev.addEventListener("click", () => {
-        localStorage.removeItem("data-fight");
-        location.reload();
-    })
-    amountWins = Number(localStorage.getItem("amountYourWins")) + 1;
-    localStorage.setItem("amountYourWins", amountWins);
-}
+        itog.classList.add("open");
+        itogHead.textContent = "Победа далась кровью"
+        itogText.textContent = `Поздравляю, ${player.name}. Теперь станешь грушей для битья кого-то посильнее`
+        btnExit.textContent = "Убежать с ринга";
+        btnRev.textContent = "Ещё раунд";
+        exitText.textContent = "Спасти свою шкуру. Единственный твой талант"
+        revengeText.textContent = "Продолжим выбивать из тебя остатки самоуважения"
+        btnExit.addEventListener("click", () => {
+            localStorage.removeItem("data-fight");
+            window.location.href = "menu.html";
+            amountWins = Number(localStorage.getItem("amountYourWins")) + 1;
+            localStorage.setItem("amountYourWins", amountWins);
+        });
+        btnRev.addEventListener("click", () => {
+            localStorage.removeItem("data-fight");
+            location.reload();
+            amountWins = Number(localStorage.getItem("amountYourWins")) + 1;
+            localStorage.setItem("amountYourWins", amountWins);
+        })
+    }
 
 function checkDefeat() {
     itog.classList.add("open");
     itogHead.textContent = "Нокаут. Ожидаемо"
     itogText.textContent = `${opp.name} из тебя сделал фарш. Хах, теперь ты официально никто...`;
-    btnExit.textContent = "Смириться и уползти";
+    btnExit.textContent = "Сдаться и уползти";
     btnRev.textContent = "Реванш";
     exitText.textContent = "Признать свою ничтожность. Мудрое решение"
     revengeText.textContent = "Попытка №100500. В этот раз проиграешь еще быстрее"
     btnExit.addEventListener("click", () => {
         localStorage.removeItem("data-fight");
         window.location.href = "menu.html";
+        amountDefens = Number(localStorage.getItem("amountYourDefens")) + 1;
+        localStorage.setItem("amountYourDefens", amountDefens);
     });
     btnRev.addEventListener("click", () => {
         localStorage.removeItem("data-fight");
         location.reload();
+        amountDefens = Number(localStorage.getItem("amountYourDefens")) + 1;
+        localStorage.setItem("amountYourDefens", amountDefens);
     })
 
-    amountDefens = Number(localStorage.getItem("amountYourDefens")) + 1;
-    console.log(amountDefens);
-    localStorage.setItem("amountYourDefens", amountDefens);
 }
 
 function checkDraw() {
     itog.classList.add("open");
     itogHead.textContent = "Ничья. Как скучно"
     itogText.textContent = "Идеальный результат для двух лузеров";
-    btnExit.textContent = "Сдаться";
+    btnExit.textContent = "Слиться";
     btnRev.textContent = "Еще раз";
-    exitText.textContent = "Признать свою ничтожность. Мудрое решение"
-    revengeText.textContent = "Попытка №100500. В этот раз проиграешь еще быстрее"
+    exitText.textContent = "Твое коренное умение. Да, хватит позориться"
+    revengeText.textContent = "Чтобы снова получить по зубам, ну-ну"
     btnExit.addEventListener("click", () => {
         localStorage.removeItem("data-fight");
         window.location.href = "menu.html";
@@ -408,6 +413,14 @@ function checkDraw() {
         localStorage.removeItem("data-fight");
         location.reload();
     })
+}
+
+if (opp.hp <= 0 && player.hp > 0) {
+    checkWin();
+} else if (player.hp <= 0 && opp.hp > 0){
+    checkDefeat();
+} else if (player.hp <= 0 && opp.hp <= 0) {
+    checkDraw();
 }
 
 function checkEnd() {
@@ -565,9 +578,11 @@ btnFight.addEventListener("click", () => {
     minusDamage(opp, dmgToOpp);
     minusDamage(player, dmgToPlayer);
 
+
     updateHp();
     saveBattle()
     changePhoto();
+
     if (checkEnd()) return;
 })
 
