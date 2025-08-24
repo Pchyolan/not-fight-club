@@ -888,3 +888,127 @@ h1 {
 .fight-log .zone {
     text-decoration: underline;
 }
+
+.itog-fight {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: none;
+}
+
+.itog-fight.open {
+    display: block;
+}
+
+.itog-background {
+    background: rgba(50, 50, 50, 0.6);
+    position: absolute;
+    backdrop-filter: blur(2px);
+    inset: 0;
+}
+
+.itog-card {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 1000px;
+    height: 600px;
+    padding: 20px;
+    background: rgba(193, 193, 193, 0.9);
+    border: 3px solid rgb(65, 65, 65);
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(158, 158, 158, 0.5);
+}
+
+.itog-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.itog-head {
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 4px;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.itog-text {
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+.itog-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 10px;
+    position: relative;
+    align-items: center;
+}
+
+.itog-exit {
+    width: 420px;
+    height: 100px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    font-size: 40px;
+    border: 4px solid rgb(131, 131, 131);
+    border-radius: 10px;
+    background: rgba(213, 204, 198, 0.8);
+    transition: 0.25s ease-in-out;
+}
+
+.itog-revenge {
+    width: 420px;
+    height: 100px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 4px;
+    font-size: 45px;
+    border: 4px solid rgb(126, 126, 126);
+    border-radius: 10px;
+    background: rgba(217, 207, 204, 0.8);
+    transition: 0.3s ease-in-out;
+}
+
+.itog-exit:hover,
+.itog-revenge:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background: rgba(218, 218, 218, 0.9);
+    border: 4px solid rgb(103, 103, 103);
+    letter-spacing: 5px;
+}
+
+.itog-texts {
+    position: absolute;
+    bottom: -20px;
+}
+
+.itog-revenge-text,
+.itog-exit-text {
+    position: absolute;
+    width: 500px;
+    left: 0px;
+    transform: translateX(-50%);
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 2px;
+    font-size: 30px;
+    color: rgb(41, 41, 41);
+    margin-top: 0;
+    transition: 0.3s ease-in-out;
+    opacity: 0;
+    text-align: center;
+}
+
+.itog-buttons .itog-revenge:hover~.itog-texts .itog-revenge-text {
+    opacity: 1;
+}
+
+.itog-buttons .itog-exit:hover~.itog-texts .itog-exit-text {
+    opacity: 1;
+}

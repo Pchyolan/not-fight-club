@@ -328,16 +328,68 @@ function minusDamage(boec, dmg) {
     boec.hp = Math.max(0, boec.hp - dmg);
 }
 
+//Победа далась кровью
+//Поздравляю. Теперь станешь грушей для битья кого-то посильнее
+//Убежать с ринга
+//Еще раунд
+
+//Нокаут. Ожидаемо
+//Из тебя сделали фарш, теперь ты официально никто
+//Cдаться и уползти
+//Реванш
+
+
+const itog = document.getElementById("itog-fight");
+const itogHead = document.getElementById("itog-head");
+const itogText = document.getElementById("itog-text");
+const btnExit = document.getElementById("itog-exit");
+const btnRev = document.getElementById("itog-revenge");
+const exitText = document.getElementById("itog-exit-text");
+const revengeText = document.getElementById("itog-revenge-text");
+
+
+function checkWin() {
+    itog.classList.add("open");
+    itogHead.textContent = "Победа далась кровью"
+    itogText.textContent = `Поздравляю, ${player.name}. Теперь станешь грушей для битья кого-то посильнее`
+    btnExit.textContent = "Убежать с ринга";
+    btnRev.textContent = "Ещё раунд";
+    exitText.textContent = "Спасти свою шкуру. Единственный твой талант"
+    revengeText.textContent = "Продолжим выбивать из тебя остатки самоуважения"
+    btnExit.addEventListener("click", () => {
+        localStorage.removeItem("data-fight");
+        window.location.href = "menu.html";
+    });
+    btnRev.addEventListener("click", () => {
+        localStorage.removeItem("data-fight");
+        location.reload();
+    })
+}
+
+function checkDefeat() {
+    itog.classList.add("open");
+    itogHead.textContent = "Нокаут. Ожидаемо"
+    itogText.textContent = `${opp.name} из тебя сделал фарш. Хах, теперь ты официально никто...`;
+    btnExit.textContent = "Сдаться и уползти";
+    btnRev.textContent = "Реванш";
+    exitText.textContent = "Признать свою ничтожность. Мудрое решение"
+    revengeText.textContent = "Попытка №100500. В этот раз проиграешь еще быстрее"
+    btnExit.addEventListener("click", () => {
+        localStorage.removeItem("data-fight");
+        window.location.href("menu.html");
+    });
+    btnRev.addEventListener("click", () => {
+        localStorage.removeItem("data-fight");
+        location.reload();
+    })
+}
+
 function checkEnd() {
     if (player.hp <= 0 || opp.hp <= 0) {
         const result =
             player.hp <= 0 && opp.hp <= 0 ? "Ухты, ничья" :
-                player.hp <= 0 ? "Лууузер" : "Победа, на удивление";
-        alert(result);
-        localStorage.removeItem("data-fight");
-        location.reload();
-
-        return true;
+                player.hp <= 0 ? checkDefeat() : checkWin();
+        return result;
     }
 
     return false;
