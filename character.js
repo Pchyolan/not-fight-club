@@ -66,6 +66,7 @@ btnLeft.addEventListener("click", () => {
 })
 
 changePhoto(index);
+avatar.style.visibility = 'visible';
 
 const playerName = localStorage.getItem("playerName");
 const changePhotoSay = document.getElementById("change-photo-say");

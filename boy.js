@@ -203,7 +203,6 @@ const opponents = [
         maxHp: 100,
         damage: 10,
         critChance: 0.2,
-        critCoeff: 1.5,
         attacksPerTurn: 2,
         blocksPerTurn: 1
     },
@@ -215,7 +214,6 @@ const opponents = [
         maxHp: 100,
         damage: 20,
         critChance: 0.2,
-        critCoeff: 1.5,
         attacksPerTurn: 1,
         blocksPerTurn: 3
     },
@@ -233,12 +231,73 @@ const opponents = [
     },
 ]
 
-const opp = opponents[Math.floor(Math.random() * opponents.length)];
+let opp;
+function comeHereOpp() {
+    document.querySelector(".protivnik .pers-name").textContent = opp.name;
+    document.querySelector(".protivnik .photo-pers").src = opp.img;
+    document.querySelector(".protivnik .icon-prot img").src = opp.icon;
+    document.querySelector(".protivnik .prot-health p").textContent = `${opp.hp}/${opp.maxHp}`;
+}
 
-document.querySelector(".protivnik .pers-name").textContent = opp.name;
-document.querySelector(".protivnik .photo-pers").src = opp.img;
-document.querySelector(".protivnik .icon-prot img").src = opp.icon;
-document.querySelector(".protivnik .prot-health p").textContent = `${opp.hp}/${opp.maxHp}`;
+if (!isBattleSave()) {
+    opp = opponents[Math.floor(Math.random() * opponents.length)];
+    comeHereOpp();
+    updateHp();
+}
+
+function isBattleSave() {
+    const is = localStorage.getItem("data-fight");
+    if (!is) return false;
+
+    let str;
+    try { str = JSON.parse(is) } catch (no) { return false; }
+
+    if (str.player) {
+        player.name = str.player.name ?? player.name;
+        player.damage = str.player.damage ?? player.damage;
+        player.hp = str.player.hp ?? player.hp;
+        player.maxHp = str.player.maxHp ?? player.maxHp;
+        player.attacksPerTurn = str.player.attacksPerTurn ?? player.attacksPerTurn;
+        player.blocksPerTurn = str.player.blocksPerTurn ?? player.blocksPerTurn;
+    }
+
+    if (str.opp) {
+        opp = { ...str.opp };
+    } else {
+        return false;
+    };
+
+    comeHereOpp();
+    updateHp();
+
+    if (Array.isArray(str.logRows)) {
+        const log = document.getElementById("fight-log");
+
+        if (log) {
+            log.innerHTML = "";
+            str.logRows.forEach(html => {
+                const row = document.createElement("div");
+                row.className = "row";
+                row.innerHTML = html;
+                log.appendChild(row)
+            })
+            log.scrollTop = log.scrollHeight;
+        }
+    }
+
+    choseAttack = str.choseAttack ?? null;
+    choseDefensBtn = Array.isArray(str.choseDefensBtn) ? str.choseDefensBtn : [];
+
+    btnsAttack.forEach(att => {
+        att.classList.toggle("selected", att.dataset.zone === choseAttack);
+    });
+
+    goLight();
+    checkAttack();
+    changePhoto();
+
+    return true;
+}
 
 
 const ZONES = ["temple", "jav", "belly", "liver", "shin"];
@@ -275,6 +334,8 @@ function checkEnd() {
             player.hp <= 0 && opp.hp <= 0 ? "Ухты, ничья" :
                 player.hp <= 0 ? "Лууузер" : "Победа, на удивление";
         alert(result);
+        localStorage.removeItem("data-fight");
+        location.reload();
 
         return true;
     }
@@ -351,26 +412,47 @@ btnFight.addEventListener("click", () => {
 
     function getReactionOpp(zonee, itogDamage) {
         if (itogDamage === 0) {
-            return reactBlockOpp[Math.floor(Math.random() * reactBlockPlayer.length)];
+            return reactBlockOpp[Math.floor(Math.random() * reactBlockOpp.length)];
         } else {
             const rea = reactionsOpp[zonee];
             return choseReaction(rea);
         }
     }
 
-    function getReactionPlayer(zonee,itogDamage) {
+    function getReactionPlayer(zonee, itogDamage) {
         if (itogDamage === 0) {
-            return reactBlockPlayer[Math.floor(Math.random() * reactBlockOpp.length)];
+            return reactBlockPlayer[Math.floor(Math.random() * reactBlockPlayer.length)];
         } else {
             const rea = reactionsPlayer[zonee];
             return choseReaction(rea);
         }
     }
 
+    const playerCrit = [2, 4]
+    const oppCrit = [3, 5]
+
+    function critPlayerUdar(dmg) {
+        const randomNumb = Math.floor(Math.random() * 10);
+        if (playerCrit.includes(randomNumb)) {
+            return dmg * 1.5;
+        } else {
+            return dmg;
+        }
+    }
+
+    function critOppUdar(dmg) {
+        const randomNumb = Math.floor(Math.random() * 10);
+        if (oppCrit.includes(randomNumb)) {
+            return dmg * 1.5;
+        } else {
+            return dmg;
+        }
+    }
+
     {
         const block = oppBlocks.includes(playerAttacks);
         const itogDamage = block ? 0 : player.damage
-
+        critPlayerUdar(itogDamage);
         addLog({
             who: player.name,
             doo: getGlagol(glagols),
@@ -388,7 +470,7 @@ btnFight.addEventListener("click", () => {
     oppAttacks.forEach(zone => {
         const block = playerBlocks.includes(zone);
         const itogDamage = block ? 0 : opp.damage;
-        console.log(itogDamage)
+        critOppUdar(itogDamage);
         addLog({
             who: opp.name,
             doo: getGlagol(glagols),
@@ -406,6 +488,43 @@ btnFight.addEventListener("click", () => {
     minusDamage(player, dmgToPlayer);
 
     updateHp();
+    saveBattle()
     changePhoto();
     if (checkEnd()) return;
 })
+
+function colectLogs() {
+    const log = document.getElementById("fight-log");
+    const rows = [...log.querySelectorAll(".row")].map(row => row.innerHTML);
+    return rows;
+}
+
+function saveBattle() {
+    const data = {
+        player: {
+            name: player.name,
+            hp: player.hp,
+            maxHp: player.maxHp,
+            damage: player.damage,
+            attacksPerTurn: player.attacksPerTurn,
+            blocksPerTurn: player.blocksPerTurn
+        },
+        opp: {
+            name: opp.name,
+            img: opp.img,
+            icon: opp.icon,
+            hp: opp.hp,
+            maxHp: opp.maxHp,
+            damage: opp.damage,
+            attacksPerTurn: opp.attacksPerTurn,
+            blocksPerTurn: opp.blocksPerTurn
+        },
+        logRows: colectLogs(),
+        choseAttack: choseAttack,
+        choseDefensBtn: [...choseDefensBtn]
+    }
+
+    const json = JSON.stringify(data)
+    localStorage.setItem("data-fight", json);
+
+}

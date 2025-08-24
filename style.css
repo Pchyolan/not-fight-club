@@ -579,6 +579,18 @@ h1 {
     padding: 0px 20px;
 }
 
+.fight-container .left-column img {
+    width: 50%;
+    height: auto;
+    margin-left: 50px;
+}
+
+.fight-container .right-column img {
+    width: 25%;
+    height: auto;
+}
+
+
 .fight-container .say-tyler p {
     margin-bottom: 0px;
     font-size: 35px;
@@ -847,7 +859,7 @@ h1 {
 }
 
 .fight-log {
-    margin: 0px 180px 10px 180px;
+    margin: 0px 170px 10px 170px;
     padding: 10px 14px;
     border: 2px solid rgba(194, 178, 178, 0.6);
     border-radius: 10px;
@@ -855,6 +867,7 @@ h1 {
     text-align: center;
     max-height: 280px;
     overflow-y: auto;
+    min-height: 100px;
 }
 
 .fight-log .row {

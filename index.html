@@ -6,9 +6,19 @@
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Viaoda+Libre&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Viaoda+Libre&display=swap" rel="stylesheet">
     <title>Not Fight Club</title>
+    <script>
+        (function () {
+            let savedName = localStorage.getItem("playerName");
+
+            if (savedName && savedName.trim() !== "") {
+                window.location.replace("menu.html");
+                return;
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -19,7 +29,7 @@
                 <img src="img/welcome-tyler.png" alt="tyler" class="welcome-img">
             </div>
             <div class="name">
-                <img src="img/tresh-small.png" alt="trechshina" class = "trech">
+                <img src="img/tresh-small.png" alt="trechshina" class="trech">
                 <h3>Введи свое прозвище</h3>
                 <p>После первого удара ты его забудешь</p>
                 <input type="text" id="inputName" placeholder="Или придумаем его по твоим переломам...">
