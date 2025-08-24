@@ -91,11 +91,15 @@ function isWin() {
     }
 }
 
+
+
 function isDef() {
     if (localStorage.getItem("amountYourDefens")) {
-        defeats.textContent = localStorage.getItem("amountYourWins");
+        defeats.textContent = localStorage.getItem("amountYourDefens");
     } else {
         defeats.textContent = "0";
     }
 }
 
+isWin();
+isDef();
