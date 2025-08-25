@@ -20,8 +20,8 @@ const playerName = localStorage.getItem("playerName");
 const playerPhoto = localStorage.getItem("chosenPhoto");
 const playerIcon = localStorage.getItem("choseIcon");
 persName.textContent = playerName;
-document.getElementById("photo-fight").src = playerPhoto;
-document.getElementById("pers-icon-fight").src = playerIcon;
+document.getElementById("photo-fight").src = playerPhoto ?? 'img/boec-1.png';
+document.getElementById("pers-icon-fight").src = playerIcon ?? 'img/knife.png';
 
 
 const btnsAttack = document.querySelectorAll(".attack-btn");
