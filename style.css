@@ -256,6 +256,61 @@ h1 {
 }
 
 
+.music-player {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 75%;
+    left: 39%;
+    gap: 20px;
+    border: 3px solid rgb(173, 154, 154);
+    border-radius: 10px;
+    height: 100px;
+    width: 400px;
+    padding: 10px;
+    background-color: rgba(219, 200, 200, 0.1);
+    box-shadow: 0px 0px 30px rgb(48, 44, 44);
+}
+
+.music-name {
+    font-size: 26px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(227, 213, 213);
+    margin: 5px;
+    font-weight: 700;
+}
+
+.music-autor {
+    font-size: 22px;
+    font-family: "Viaoda Libre", serif;
+    letter-spacing: 3px;
+    color: rgb(203, 188, 188);
+    margin: 5px;
+}
+
+.music-player button {
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    border: 3px solid rgb(224, 203, 203);
+    font-size: 45px;
+    text-align: center;
+    padding-left: 8px;
+    padding-bottom: 5px;
+    color: rgb(226, 203, 203);
+    background-color: rgba(219, 200, 200, 0.2);
+    transition: 0.25s ease-in-out;
+}
+
+.music-player button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: rgba(219, 200, 200, 0.3);
+    color: rgb(237, 217, 217);
+    font-size: 48px;
+}
+
 /* Pers */
 
 .pers-container {

@@ -40,3 +40,32 @@ function randomWord() {
 }
 const fraza = randomWord();
 tylerHello.textContent = fraza.replaceAll("{name}", playerName);
+
+const musicBtn = document.getElementById("music-btn");
+const music = document.getElementById("menu-music");
+
+music.volume = 0.3;
+
+music.muted = false;
+music.play()
+  .then(() => {
+    updateMusicBtn(true);
+  })
+  .catch(() => {
+    updateMusicBtn(false);
+  });
+
+function updateMusicBtn(isItPlay) {
+    musicBtn.textContent = isItPlay ? "❚❚" : "▶︎";
+    musicBtn.setAttribute("aria-label", isItPlay ? "Pause" : "Play")
+}
+
+musicBtn.addEventListener("click", async () => {
+    if (music.paused) {
+        try { await music.play(); } catch(e) {}
+        updateMusicBtn(true);
+    } else {
+        music.pause();
+        updateMusicBtn(false);
+    }
+});

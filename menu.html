@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Viaoda+Libre&display=swap" rel="stylesheet">
+    <link rel="icon" type="image" href="img/favicon.png">
 </head>
 
 <body>
@@ -38,7 +39,16 @@
             <button id="btnFight">Fight!</button>
             <p>Жми. Всё равно тебе некуда деваться</p>
         </div>
-    </div>
+
+        <div class="music-player">
+            <div class="music-text">
+                <p class="music-name">What's a Fight Club?</p>
+                <p class="music-autor">The Dust Brothers</p>
+            </div>
+            <button id="music-btn" type="button" aria-label="Play">▶︎</button>
+            <audio id="menu-music" src="img/main-music.mp3" preload="auto" loop muted></audio>
+        </div>
+        </div>
 
     <script src="app.js" defer></script>
 </body>
